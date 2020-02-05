@@ -1,12 +1,12 @@
 const express = require("express");
-const path = require("path");
+// const path = require("path");
+const mongoose = require("mongoose")
 
 const PORT = process.env.PORT || 3001;
 const app = express();
-
 const routes = require("./routes");
 
-// Define middleware here
+// Configure body parsing for AJAX requests
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -18,10 +18,10 @@ if (process.env.NODE_ENV === "production") {
 // Use Routes
 app.use(routes);
 
-app.get("*", function(req, res){
-    res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+mongoose.connect('mongodb://localhost:27017/myapp', {useNewUrlParser: true});
 
 app.listen(PORT, function() {
     console.log(`🌎 ==> API server now on port ${PORT}!`);
+    console.log(`🌎 ==> Visit: http://localhost:${PORT}`);
+    
 });
