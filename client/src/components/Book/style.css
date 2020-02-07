@@ -1,0 +1,24 @@
+img{
+    height: 200px;
+    width: 160px;
+    margin-bottom: 1rem;
+}
+
+.title-text{
+    font-size: 25px;
+    font-style: italic;
+    font-weight: bold;
+    color: black;
+}
+
+.a-text{
+    font-style: italic;
+    font-weight: bold;
+    color: black;
+}
+
+.p-text{
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 10px;
+}
