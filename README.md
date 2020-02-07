@@ -1,9 +1,11 @@
 <img src="client/src/images/screenshot.png" height=300px alt="Screenshot"></img>
 
 # React-Bookshelf
-A web app that allow you to search book from google books API and store in your personal bookshelf.
-
+A web app that allow you to search book from google books API and store in your personal bookshelf.<br />
 After you entered the key words and clicked submit, it will return books from google books API, filtering only books with title, authors, categories, publisher, publishedDate, image and description.
+
+[Check the front end commits](https://github.com/andrewlin618/React-Book-Search)
+
 
 - [End Goal](#end-goal)
 - [Getting Started](#getting-started)
