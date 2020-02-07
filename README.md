@@ -63,7 +63,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
   
 * React bootstrap
 * React Router
-* Axios
+* Axios (for API call)
 * Responsive design
 * Heroku (for deployment)
 
