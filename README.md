@@ -1,7 +1,7 @@
-<img src="src/images/screenshot.png" height=300px alt="Pokemon"></img>
+<img src="client/src/images/screenshot.png" height=300px alt="Screenshot"></img>
 
-# React-Book-Search
-A web app that allow you to search book from google books API.
+# React-Bookshelf
+A web app that allow you to search book from google books API and store in your personal bookshelf.
 
 After you entered the key words and clicked submit, it will return books from google books API, filtering only books with title, authors, categories, publisher, publishedDate, image and description.
 
