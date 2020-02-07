@@ -30,6 +30,11 @@ Dependencies include:
 - "react-router-dom": "^5.1.2",
 - "react-scripts": "3.3.0",
 -  "serve": "^11.3.0"
+-  "concurrently": "^5.1.0",
+-  "cors": "^2.8.5",
+-  "express": "^4.17.1",
+-  "mongoose": "^5.8.11",
+-  "nodemon": "^2.0.2"
 
 ### `npm start`
 
