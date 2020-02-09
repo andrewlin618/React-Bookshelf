@@ -17,7 +17,7 @@ const routes = require("./routes");
 app.use(routes);
 
 // mongoose.connect('mongodb://localhost:27017/myapp', {useNewUrlParser: true});
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, function() {
     console.log(`🌎 ==> API server now on port ${PORT}!`);
     console.log(`🌎 ==> Visit: http://localhost:${PORT}`);
