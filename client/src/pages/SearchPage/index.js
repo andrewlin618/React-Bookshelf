@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-// import API from "../../utils/API";
+import API from "../../utils/API";
 import Nav from "../../components/Nav"
 import Jumbotron from "../../components/Jumbotron"
 import Container from "../../components/Container";
@@ -42,7 +42,6 @@ class SearchPage extends React.Component {
         console.log(this.state.value);
         axios.get("https://www.googleapis.com/books/v1/volumes?q=" + this.state.value + '&maxResults=' + MAXRESULTS)
         .then(res => {
-            console.log("res.data.items"+res.data.items);
             if(!res.data.items){
                 this.setState({
                     results: [],
@@ -68,7 +67,6 @@ class SearchPage extends React.Component {
                     message:''
                 })          
             }
-            console.log('validBooks'+validBooks);
         })
         .catch(() =>
             this.setState({
@@ -80,7 +78,7 @@ class SearchPage extends React.Component {
 
     handleBookSave = (id) => {
         alert("Book Shelf Under Construction...")
-        // const book = this.state.results.find(book => book.id === id);
+        const book = this.state.results.find(book => book.id === id);
         // const bookData = {
         //     googleId:book.id,
         //     title:book.volumeInfo.title,
@@ -93,10 +91,19 @@ class SearchPage extends React.Component {
         //     link:book.volumeInfo.previewLink
         // };
 
-        // console.log(book)
-        // console.log(bookData)
-        // API.saveBook(bookData)
-        // .then(() => console.log("succeeded!"))
+        API.saveBook({
+            googleId:book.id,
+            title:book.volumeInfo.title,
+            authors:book.volumeInfo.authors,
+            categories:book.volumeInfo.categories,
+            publisher:book.volumeInfo.publisher,
+            publishedDate:book.volumeInfo.publishedDate,
+            image:book.volumeInfo.imageLinks.thumbnail,
+            description:book.volumeInfo.description, 
+            link:book.volumeInfo.previewLink
+        })
+        .then(() => console.log("succeeded!"))
+        .catch(() => alert('stupid!'))
 
     };
 
