@@ -21,7 +21,7 @@ export function BtnView(props){
 export function BtnSave(props){
         return(
             <button className={props.isSaved ? ('btn btn-secondary card-btn'):('btn btn-success card-btn')}  onClick={props.onClick} style={{fontWeight:'bold'}}>
-                {props.isSaved?("SAVED"):("SAVE")}
+                {props.isSaved?("UNSAVE"):("SAVE")}
             </button>
         )
     }

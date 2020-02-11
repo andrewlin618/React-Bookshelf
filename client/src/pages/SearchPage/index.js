@@ -23,6 +23,7 @@ class SearchPage extends React.Component {
     state = {
         value: '',
         toResults:false,
+        books:[],
         results:[],
         isCollapsed:false,
         message:''
@@ -38,8 +39,7 @@ class SearchPage extends React.Component {
         this.setState({
             toResults: true
         })     
-        // const title = this.state.value.trim();
-        console.log(this.state.value);
+
         axios.get("https://www.googleapis.com/books/v1/volumes?q=" + this.state.value + '&maxResults=' + MAXRESULTS)
         .then(res => {
             if(!res.data.items){
@@ -77,7 +77,7 @@ class SearchPage extends React.Component {
     }
 
     handleBookSave = (id) => {
-        alert("Book Shelf Under Construction...")
+        alert("Saving book to bookshelf……")
         const book = this.state.results.find(book => book.id === id);
         const bookData = {
             googleId:book.id,
@@ -92,10 +92,37 @@ class SearchPage extends React.Component {
         };
 
         API.saveBook(bookData)
-        .then(() => console.log("succeeded!"))
-        .catch(() => alert('stupid!'))
+        .then(() => console.log("Succeeded!"))
+        .catch(() => alert('Book already exists!'))
 
     };
+
+    checkSave = (id) => {
+        this.state.books.forEach(book => {
+            if(book.id === id){
+                return true;
+            }
+        })
+        return false
+    }
+
+    componentDidMount() {
+        this.openBookshelf();
+    }
+
+    openBookshelf = () => {
+        API.getSavedBooks()
+        .then(res => {
+            console.log(res.data);
+            console.log(this.state.books);
+            this.setState({
+                books:res.data,
+            })
+            console.log(this.state.books);
+        }
+        )
+        .catch((err) => console.log(err))
+    }
 
     render() {
         if (!this.state.toResults) {
