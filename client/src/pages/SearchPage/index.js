@@ -8,17 +8,7 @@ import Book from "../../components/Book";
 import {BtnSubmit,BtnSave} from "../../components/Button"
 import './style.css';
 
-const MAXRESULTS = 10;
-// import bookNotPictured from "../../images/bookNotPictured.jpg"
-
-// const test = {
-//     authors: ["Suzanne Collins"],
-//     description: "Set in a dark vision of the near future, a terrifying reality TV show is taking place. Twelve boys and twelve girls are forced to appear in a live event called The Hunger Games. There is only one rule: kill or be killed. When sixteen-year-old Katniss Everdeen steps forward to take her younger sister's place in the games, she sees it as a death sentence. But Katniss has been close to death before. For her, survival is second nature.",
-//     image: "http://books.google.com/books/content?id=sazytgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-//     link: "http://books.google.com/books?id=sazytgAACAAJ&dq=title:The+Hunger+Games&hl=&source=gbs_api",
-//     title: "The Hunger Games"
-// }
-
+const MAXRESULTS = 30;
 class SearchPage extends React.Component {
     state = {
         value: '',
@@ -29,6 +19,23 @@ class SearchPage extends React.Component {
         message:''
     };
 
+    componentDidMount() {
+        this.openBookshelf();
+    }
+
+    openBookshelf = () => {
+        API.getSavedBooks()
+        .then(res => {
+            this.setState({
+                books:res.data,
+            })
+            console.log('*** Successfully opened the bookshelf! ***');
+            console.log(this.state.books);
+        }
+        )
+        .catch((err) => console.log(err))
+    }
+
     handleChange = event => {
         this.setState({value: event.target.value});
         console.log(this.state.value);
@@ -38,7 +45,8 @@ class SearchPage extends React.Component {
         event.preventDefault();
         this.setState({
             toResults: true
-        })     
+        })
+        console.log('Input keyword:' + this.state.value);
 
         axios.get("https://www.googleapis.com/books/v1/volumes?q=" + this.state.value + '&maxResults=' + MAXRESULTS)
         .then(res => {
@@ -67,6 +75,8 @@ class SearchPage extends React.Component {
                     message:''
                 })          
             }
+            console.log('vvv Search Results vvv');
+            console.log(this.state.results);
         })
         .catch(() =>
             this.setState({
@@ -77,51 +87,59 @@ class SearchPage extends React.Component {
     }
 
     handleBookSave = (id) => {
-        alert("Saving book to bookshelf……")
-        const book = this.state.results.find(book => book.id === id);
-        const bookData = {
-            googleId:book.id,
-            title:book.volumeInfo.title,
-            authors:book.volumeInfo.authors,
-            categories:book.volumeInfo.categories,
-            publisher:book.volumeInfo.publisher,
-            publishedDate:book.volumeInfo.publishedDate,
-            image:book.volumeInfo.imageLinks.thumbnail,
-            description:book.volumeInfo.description, 
-            link:book.volumeInfo.previewLink
-        };
-
-        API.saveBook(bookData)
-        .then(() => console.log("Succeeded!"))
-        .catch(() => alert('Book already exists!'))
-
+        //If the book is not saved, save the book:
+        if(!this.checkSave(id)){
+            this.saveBook(id);
+        }
+        //If the is saved, delete the book;
+        else{
+            this.deleteBook(id);
+        }
     };
 
+    saveBook = (id) => {
+        alert("Saving book to bookshelf……")
+            const book = this.state.results.find(book => book.id === id);
+            const bookData = {
+                googleId:book.id,
+                title:book.volumeInfo.title,
+                authors:book.volumeInfo.authors,
+                categories:book.volumeInfo.categories,
+                publisher:book.volumeInfo.publisher,
+                publishedDate:book.volumeInfo.publishedDate,
+                image:book.volumeInfo.imageLinks.thumbnail,
+                description:book.volumeInfo.description, 
+                link:book.volumeInfo.previewLink
+            };           
+            API.saveBook(bookData)
+            .then(() => {
+                console.log("Successfully saved!");
+                this.openBookshelf();
+            })
+            .catch(() => alert('Book already exists!'))
+    }
+
+    deleteBook = (id) => {
+        if(true){
+            API.deleteBook(id)
+            .then(() => {
+                console.log("Successfully deleted!")
+                this.openBookshelf();
+                }
+            )
+            .catch(() => alert('Book already exists!'))
+
+        }
+    }
+
     checkSave = (id) => {
+        var tem = false;
         this.state.books.forEach(book => {
-            if(book.id === id){
-                return true;
+            if(book.googleId === id){
+                tem = true;
             }
         })
-        return false
-    }
-
-    componentDidMount() {
-        this.openBookshelf();
-    }
-
-    openBookshelf = () => {
-        API.getSavedBooks()
-        .then(res => {
-            console.log(res.data);
-            console.log(this.state.books);
-            this.setState({
-                books:res.data,
-            })
-            console.log(this.state.books);
-        }
-        )
-        .catch((err) => console.log(err))
+        return tem;
     }
 
     render() {
@@ -130,9 +148,8 @@ class SearchPage extends React.Component {
                 <div>
                     <Nav />
                     <Jumbotron />
-                    <Container>
-                        <h4 style={{fontWeight:'bold'}}>BOOK SEARCH</h4>
-                        <div className="input-group mb-3">
+                    <Container header={'SEARCH'}>
+                        <div className="input-group my-3">
                             <input type="text" className="form-control title" placeholder="key words in the title" aria-label="Book's Keyword" aria-describedby="button-addon2" onChange={this.handleChange}></input>
                             <div className="input-group-append">
                                 <BtnSubmit className="btn btn-success search" type="button" id="button-addon2" onClick={this.handleSubmit} >SEARCH</BtnSubmit>
@@ -148,10 +165,11 @@ class SearchPage extends React.Component {
         return(
             <div>
                 <Nav />
-                <Jumbotron />
-                <Container>
-                    <h4 style={{fontWeight:'bold'}}>BOOK SEARCH</h4>
-                    <div className="input-group mb-3">
+                {/* <Jumbotron /> */}
+                <br />
+                <Container header={'SEARCH'}>
+                    {/* <h4 style={{fontWeight:'bold'}}>BOOK SEARCH</h4> */}
+                    <div className="input-group my-3">
                         <input type="text" className="form-control title" placeholder="key words in the title" aria-label="Book's Keyword" aria-describedby="button-addon2" onChange={this.handleChange}></input>
                         <div className="input-group-append">
                             <BtnSubmit className="btn btn-success search" type="button" id="button-addon2" onClick={this.handleSubmit} >SEARCH</BtnSubmit>
@@ -159,8 +177,7 @@ class SearchPage extends React.Component {
                     </div>
                 </Container>
                 <br />
-                    <Container>
-                    <h4 style={{fontWeight:'bold'}}>SEARCH RESULTS</h4>
+                    <Container header='SEARCH RESULTS'>
                     {this.state.results.map(book => 
                         <Book 
                         key={book.id} 
@@ -176,7 +193,7 @@ class SearchPage extends React.Component {
                         isCollapsed={this.state.isCollapsed}
                         target="_blank"
                         Buttonaaa={()=>(
-                            <BtnSave onClick={() => this.handleBookSave(book.id)} isSaved = {false}></BtnSave>
+                            <BtnSave onClick={() => this.handleBookSave(book.id)} isSaved = {this.checkSave(book.id)}></BtnSave>
                         )}
                         />
                     )}

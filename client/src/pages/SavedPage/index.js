@@ -1,6 +1,7 @@
 import React from "react";
 import Nav from "../../components/Nav"
-import Jumbotron from "../../components/Jumbotron"
+// import Jumbotron from "../../components/Jumbotron"
+
 import Container from "../../components/Container";
 import API from "../../utils/API";
 import Book from "../../components/Book";
@@ -9,10 +10,8 @@ import {BtnSave} from "../../components/Button"
 
 class SavedPage extends React.Component {
     state = {
-        books:[]
-    }
-
-    handleDelete(){
+        books:[],
+        message:'Your book shelf is empty...'
     }
 
     componentDidMount() {
@@ -24,25 +23,43 @@ class SavedPage extends React.Component {
         .then(res => {
             console.log(res.data);
             console.log(this.state.books);
-            this.setState({
-                books:res.data,
-            })
+            if(res.data.length > 0){
+                this.setState({
+                    books:res.data,
+                    message:''
+                })
+            }
+
             console.log(this.state.books);
         }
         )
         .catch((err) => console.log(err))
     }
 
+    deleteBook = (id) => {
+        if(true){
+            API.deleteBook(id)
+            .then(() => {
+                console.log("Successfully deleted!")
+                this.openBookshelf();
+                }
+            )
+            .catch(() => alert('Book already exists!'))
+
+        }
+    }
+
     render(){
         return(
             <div>
                 <Nav />
-                <Jumbotron />
-                <Container>
-                <h4 style={{fontWeight:'bold'}}>SAVED BOOKS</h4>
+                {/* <Jumbotron /> */}
+                <br />
+                <Container header='MY BOOKSHELF'>
+                <h2 className="text-center">{this.state.message}</h2>
                 {this.state.books.map(book => 
                         <Book 
-                        key={book.googleId} 
+                        key={book._id} 
                         googleId={book.googleId} 
                         title={book.title} 
                         authors={book.authors}
@@ -54,7 +71,7 @@ class SavedPage extends React.Component {
                         link={book.link} 
                         target="_blank"
                         Buttonaaa={()=>(
-                            <BtnSave onClick={() => this.handleBookSave(book.id)} isSaved = {false}></BtnSave>
+                            <BtnSave onClick={() => this.deleteBook(book._id)} isSaved = {true}></BtnSave>
                         )}
                         />
                     )}
