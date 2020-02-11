@@ -79,19 +79,7 @@ class SearchPage extends React.Component {
     handleBookSave = (id) => {
         alert("Book Shelf Under Construction...")
         const book = this.state.results.find(book => book.id === id);
-        // const bookData = {
-        //     googleId:book.id,
-        //     title:book.volumeInfo.title,
-        //     authors:book.volumeInfo.authors,
-        //     categories:book.volumeInfo.categories,
-        //     publisher:book.volumeInfo.publisher,
-        //     publishedDate:book.volumeInfo.publishedDate,
-        //     image:book.volumeInfo.imageLinks.thumbnail,
-        //     description:book.volumeInfo.description, 
-        //     link:book.volumeInfo.previewLink
-        // };
-
-        API.saveBook({
+        const bookData = {
             googleId:book.id,
             title:book.volumeInfo.title,
             authors:book.volumeInfo.authors,
@@ -101,7 +89,9 @@ class SearchPage extends React.Component {
             image:book.volumeInfo.imageLinks.thumbnail,
             description:book.volumeInfo.description, 
             link:book.volumeInfo.previewLink
-        })
+        };
+
+        API.saveBook(bookData)
         .then(() => console.log("succeeded!"))
         .catch(() => alert('stupid!'))
 

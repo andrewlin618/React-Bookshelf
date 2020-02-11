@@ -22,7 +22,7 @@ function Book({ title, authors, categories, publisher, publishedDate, image, des
             <div className='row'>
                 <div className='col-md-4'>
                     <a className='title-text' href={link} target={target}>{title}</a>
-                    <p style={{fontWeight:'bold'}}> Written by: <span>{authors.toString()}</span></p>
+                    <p style={{fontWeight:'bold'}}> Written by: <span>{authors.toString() || 'N/A'}</span></p>
                 </div>
                 <div className='col-md-8 mt-2'>
                     <p className='p-text'>Category: <span>{categories.toString()}</span></p>
