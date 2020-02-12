@@ -29,6 +29,12 @@ class SavedPage extends React.Component {
                     message:''
                 })
             }
+            else{
+                this.setState({
+                    book:[],
+                    message:'Your book shelf is empty...'
+                })
+            }
 
             console.log(this.state.books);
         }
