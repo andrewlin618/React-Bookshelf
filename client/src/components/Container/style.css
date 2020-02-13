@@ -1,0 +1,22 @@
+.wrapper{
+    width: 60%;
+}
+
+.card-header{
+    background-color:rgb(82, 92, 110);
+}
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  {
+    .wrapper{
+        width: 85%;
+}}
+
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 812px)
+and (-webkit-device-pixel-ratio : 3) {
+    .wrapper{
+        width: 90%;
+}}

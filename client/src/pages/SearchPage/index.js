@@ -5,6 +5,7 @@ import Nav from "../../components/Nav"
 import Jumbotron from "../../components/Jumbotron"
 import Container from "../../components/Container";
 import Book from "../../components/Book";
+import Footer from "../../components/Footer";
 import {BtnSubmit,BtnSave} from "../../components/Button"
 import './style.css';
 
@@ -20,6 +21,9 @@ class SearchPage extends React.Component {
     };
 
     componentDidMount() {
+        this.setState({
+            toResults:false,
+        })
         this.openBookshelf();
     }
 
@@ -41,8 +45,7 @@ class SearchPage extends React.Component {
         console.log(this.state.value);
     }
 
-    handleSubmit = event => {
-        event.preventDefault();
+    handleSubmit = () => {
         this.setState({
             toResults: true
         })
@@ -53,7 +56,7 @@ class SearchPage extends React.Component {
             if(!res.data.items){
                 this.setState({
                     results: [],
-                    message: "No Books Found..."
+                    message: "No Books Found...Try something else."
                 })
             }
             else{
@@ -75,13 +78,13 @@ class SearchPage extends React.Component {
                     message:''
                 })          
             }
-            console.log('vvv Search Results vvv');
+            console.log('*** Search Results: ***');
             console.log(this.state.results);
         })
         .catch(() =>
             this.setState({
                 results: [],
-                message: "API Call Failed..."
+                message: 'Please enter some key words.'
             })
         );
     }
@@ -97,39 +100,38 @@ class SearchPage extends React.Component {
         }
     };
 
-    saveBook = (id) => {
-        alert("Saving book to bookshelf……")
-            const book = this.state.results.find(book => book.id === id);
-            const bookData = {
-                googleId:book.id,
-                title:book.volumeInfo.title,
-                authors:book.volumeInfo.authors,
-                categories:book.volumeInfo.categories,
-                publisher:book.volumeInfo.publisher,
-                publishedDate:book.volumeInfo.publishedDate,
-                image:book.volumeInfo.imageLinks.thumbnail,
-                description:book.volumeInfo.description, 
-                link:book.volumeInfo.previewLink
-            };           
-            API.saveBook(bookData)
-            .then(() => {
-                console.log("Successfully saved!");
-                this.openBookshelf();
-            })
-            .catch(() => alert('Book already exists!'))
+    handleKeyPress = (event) => {
+        if(event.key === 'Enter'){
+            this.handleSubmit();
+            console.log('enter press here! ')
+        }
     }
 
-    deleteBook = (id) => {
-        if(true){
-            API.deleteBook(id)
-            .then(() => {
-                console.log("Successfully deleted!")
-                this.openBookshelf();
-                }
-            )
-            .catch(() => alert('Book already exists!'))
+    saveBook = (id) => {
+        alert("Saving book to bookshelf……");
+        const book = this.state.results.find(book => book.id === id);
+        const bookData = {
+            googleId:book.id,
+            title:book.volumeInfo.title,
+            authors:book.volumeInfo.authors,
+            categories:book.volumeInfo.categories,
+            publisher:book.volumeInfo.publisher,
+            publishedDate:book.volumeInfo.publishedDate,
+            image:book.volumeInfo.imageLinks.thumbnail,
+            description:book.volumeInfo.description, 
+            link:book.volumeInfo.previewLink
+        };           
+        API.saveBook(bookData)
+        .then(() => {
+            console.log("Successfully saved!");
+            this.openBookshelf();
+        })
+        .catch(() => alert('Book already exists!'))
+    }
 
-        }
+    deleteBook = () => {
+        alert('Go to your bookshelf to delete!')
+        this.props.history.push('/saved');
     }
 
     checkSave = (id) => {
@@ -148,14 +150,15 @@ class SearchPage extends React.Component {
                 <div>
                     <Nav />
                     <Jumbotron />
-                    <Container header={'SEARCH'}>
+                    <Container header={'SEARCH'} icon='search'>
                         <div className="input-group my-3">
-                            <input type="text" className="form-control title" placeholder="key words in the title" aria-label="Book's Keyword" aria-describedby="button-addon2" onChange={this.handleChange}></input>
+                            <input type="text" className="form-control title" placeholder="" aria-label="Book's Keyword" aria-describedby="button-addon2" onChange={this.handleChange} onKeyPress={this.handleKeyPress}></input>
                             <div className="input-group-append">
-                                <BtnSubmit className="btn btn-success search" type="button" id="button-addon2" onClick={this.handleSubmit} >SEARCH</BtnSubmit>
+                                <BtnSubmit className="btn btn-primary search" type="button" id="button-addon2" onClick={this.handleSubmit} >SEARCH</BtnSubmit>
                             </div>
                         </div>
                     </Container>
+                    <Footer />
                     <br />
                 </div>
             )
@@ -165,14 +168,13 @@ class SearchPage extends React.Component {
         return(
             <div>
                 <Nav />
-                {/* <Jumbotron /> */}
                 <br />
-                <Container header={'SEARCH'}>
+                <Container header={'SEARCH'}  icon='search'>
                     {/* <h4 style={{fontWeight:'bold'}}>BOOK SEARCH</h4> */}
                     <div className="input-group my-3">
-                        <input type="text" className="form-control title" placeholder="key words in the title" aria-label="Book's Keyword" aria-describedby="button-addon2" onChange={this.handleChange}></input>
+                        <input type="text" className="form-control title" placeholder="" aria-label="Book's Keyword" aria-describedby="button-addon2" onChange={this.handleChange} onKeyPress={this.handleKeyPress}></input>
                         <div className="input-group-append">
-                            <BtnSubmit className="btn btn-success search" type="button" id="button-addon2" onClick={this.handleSubmit} >SEARCH</BtnSubmit>
+                            <BtnSubmit type="button" id="button-addon2" onClick={this.handleSubmit}>SEARCH</BtnSubmit>
                         </div>
                     </div>
                 </Container>
@@ -197,8 +199,10 @@ class SearchPage extends React.Component {
                         )}
                         />
                     )}
-                    <h2 className="text-center">{this.state.message}</h2>
+                    <h5 className="text-center">{this.state.message}</h5>
                     </Container>
+                    <br /><br /><br /><br />
+                    <Footer />
             </div>
         )
     }

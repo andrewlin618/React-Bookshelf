@@ -38,7 +38,7 @@ function Book({ title, authors, categories, publisher, publishedDate, image, des
                 <div className='col-md-8'>
                     <p>{description}</p>
                     <div style={{textAlign: 'right'}}>
-                        <BtnView className={'btn btn-dark card-btn mr-1'} link={link} target={target}>VIEW</BtnView>
+                        <BtnView link={link} target={target}>VIEW</BtnView>
                         <Buttonaaa />
                     </div>
                 </div>

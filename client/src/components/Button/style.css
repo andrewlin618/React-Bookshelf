@@ -1,3 +1,14 @@
 .card-btn{
     width: 8rem;
 }
+
+.search-btn{
+    background-color:rgb(82, 92, 110);
+    border-color:rgb(82, 92, 110);
+}
+
+.search-btn:hover{
+    color:white;
+    background-color:rgb(43, 48, 56);
+    border-color:rgb(60, 67, 80);
+}

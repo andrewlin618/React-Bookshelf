@@ -1,17 +1,15 @@
 import React from "react";
 import Nav from "../../components/Nav"
-// import Jumbotron from "../../components/Jumbotron"
-
+import Footer from "../../components/Footer"
 import Container from "../../components/Container";
 import API from "../../utils/API";
 import Book from "../../components/Book";
 import {BtnSave} from "../../components/Button"
 
-
 class SavedPage extends React.Component {
     state = {
         books:[],
-        message:'Your book shelf is empty...'
+        message:'Your bookshelf is empty...' 
     }
 
     componentDidMount() {
@@ -26,13 +24,13 @@ class SavedPage extends React.Component {
             if(res.data.length > 0){
                 this.setState({
                     books:res.data,
-                    message:''
+                    message:'Total books: ' + res.data.length
                 })
             }
             else{
                 this.setState({
-                    book:[],
-                    message:'Your book shelf is empty...'
+                    books:[],
+                    message:'Your bookshelf is empty...'
                 })
             }
 
@@ -46,11 +44,12 @@ class SavedPage extends React.Component {
         if(true){
             API.deleteBook(id)
             .then(() => {
+                alert("Deleting……");
                 console.log("Successfully deleted!")
                 this.openBookshelf();
                 }
             )
-            .catch(() => alert('Book already exists!'))
+            .catch((err) => console.log(err))
 
         }
     }
@@ -61,8 +60,8 @@ class SavedPage extends React.Component {
                 <Nav />
                 {/* <Jumbotron /> */}
                 <br />
-                <Container header='MY BOOKSHELF'>
-                <h2 className="text-center">{this.state.message}</h2>
+                <Container header='MY BOOKSHELF' icon='bookshelf'>
+                <h5 className="text-center">{this.state.message}</h5>
                 {this.state.books.map(book => 
                         <Book 
                         key={book._id} 
@@ -82,7 +81,8 @@ class SavedPage extends React.Component {
                         />
                     )}
                 </Container>
-
+                <br /><br /><br /><br />
+                <Footer />
             </div>
         )
     }

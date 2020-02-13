@@ -8,17 +8,17 @@ img{
     font-size: 25px;
     font-style: italic;
     font-weight: bold;
-    color: black;
+    color: #292b2c;
 }
 
 .a-text{
     font-style: italic;
     font-weight: bold;
-    color: black;
+    color: #292b2c;
 }
 
 .p-text{
     font-size: 14px;
     font-weight: bold;
-    line-height: 10px;
+    line-height: 11px;
 }
