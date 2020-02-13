@@ -21,10 +21,16 @@ class SavedPage extends React.Component {
         .then(res => {
             console.log(res.data);
             console.log(this.state.books);
-            if(res.data.length > 0){
+            if(res.data.length > 1){
                 this.setState({
                     books:res.data,
                     message:'Total books: ' + res.data.length
+                })
+            }
+            else if (res.data.length === 1){
+                this.setState({
+                    books:res.data,
+                    message:'Total book: ' + res.data.length
                 })
             }
             else{
