@@ -1,4 +1,4 @@
-<img src="client/src/images/screenshot.png" height=300px alt="Screenshot"></img>
+<img src="https://i.ibb.co/SyMyMHC/screenshot.png" height=300px alt="Screenshot"></img>
 
 # React-Bookshelf
 A web app that allow you to search book from google books API and store in your personal bookshelf.<br />
