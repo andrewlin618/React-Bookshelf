@@ -1,10 +1,8 @@
 <img src="https://i.ibb.co/SyMyMHC/screenshot.png" height=300px alt="Screenshot"></img>
 
 # React-Bookshelf
-A web app that allow you to search book from google books API and store in your personal bookshelf.<br />
-After you entered the key words and clicked submit, it will return books from google books API, filtering only books with title, authors, categories, publisher, publishedDate, image and description.
-
-[Check the front end commits](https://github.com/andrewlin618/React-Book-Search)
+React Bookshelf is a web application that allow you to search book from google books API and store in your personal bookshelf.<br />
+After you entered the key words and submitted, it will return books from google books API, filtering only books with title, authors, categories, publisher, publishedDate, image and description.
 
 
 - [End Goal](#end-goal)
@@ -61,9 +59,11 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
   -  React: A JS front-end library for building user interfaces.
   -  Node.js: A JS run-time environment.
   
+* Bootstrap
 * React bootstrap
 * React Router
 * Axios (for API call)
+* Font awesome 
 * Responsive design
 * Heroku (for deployment)
 
