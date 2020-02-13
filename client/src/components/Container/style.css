@@ -10,7 +10,7 @@
 and (min-device-width : 768px) 
 and (max-device-width : 1024px)  {
     .wrapper{
-        width: 85%;
+        width: 90%;
 }}
 
 @media only screen 
@@ -18,5 +18,5 @@ and (min-device-width : 375px)
 and (max-device-width : 812px)
 and (-webkit-device-pixel-ratio : 3) {
     .wrapper{
-        width: 90%;
+        width: 95%;
 }}
