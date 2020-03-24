@@ -1,8 +1,8 @@
 <img src="https://i.ibb.co/SyMyMHC/screenshot.png" height=300px alt="Screenshot"></img>
 
 # React-Bookshelf
-React bookshelf is a full stack web application that allow you to search book from google books API and store in your personal bookshelf.<br />
-After you entered the key words and submitted, it will return books from google books API, filtering only books with title, authors, categories, publisher, publishedDate, image and description.
+React bookshelf is a full-stack web application that allows you to search book from google books API and store in your personal bookshelf.<br />
+After you entered the keywords and submitted, it will return books from google books API, filtering only books with title, authors, categories, publisher, publishedDate, image, and description.
 
 
 - [End Goal](#end-goal)
@@ -13,14 +13,14 @@ After you entered the key words and submitted, it will return books from google 
 - [Contact](#contact)
 
 ## End Goal
-To let the user search books and get useful information more easily.
+To let the user search for books and get useful information more easily.
 
 ## Getting Started
-Clone the repo to local, in the project directory, you can run:
+Clone the repo to local. In the project directory, you can run:
 
 ### `npm install`
 
-Install all necessary dependencies to ensure the app function properly.
+Install all necessary dependencies to ensure the app function correctly.
 Dependencies include:
 - "axios": "^0.19.2",
 - "react": "^16.12.0",
