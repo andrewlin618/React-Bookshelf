@@ -17,7 +17,7 @@ function Book({ title, authors, categories, publisher, publishedDate, image, des
     //     )
     // }
     return(
-        <div className='card shadow'>
+        <div className='card shadow rounded'>
         <div className='card-body'>
             <div className='row'>
                 <div className='col-md-4'>

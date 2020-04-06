@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import API from "../../utils/API";
 import Nav from "../../components/Nav"
-import Jumbotron from "../../components/Jumbotron"
 import Container from "../../components/Container";
 import Book from "../../components/Book";
 import Footer from "../../components/Footer";
@@ -12,7 +11,7 @@ import './style.css';
 const MAXRESULTS = 30;
 class SearchPage extends React.Component {
     state = {
-        value: '',
+        value:this.props.location.state ? this.props.location.state.value : '',
         toResults:false,
         books:[],
         results:[],
@@ -25,6 +24,9 @@ class SearchPage extends React.Component {
             toResults:false,
         })
         this.openBookshelf();
+        if(this.props.location.state){
+            this.handleSubmit();
+        }
     }
 
     openBookshelf = () => {
@@ -35,8 +37,7 @@ class SearchPage extends React.Component {
             })
             console.log('*** Successfully opened the bookshelf! ***');
             console.log(this.state.books);
-        }
-        )
+        })
         .catch((err) => console.log(err))
     }
 
@@ -45,7 +46,7 @@ class SearchPage extends React.Component {
         console.log(this.state.value);
     }
 
-    handleSubmit = () => {
+    handleSubmit = (e) => {
         this.setState({
             toResults: true
         })
@@ -145,26 +146,6 @@ class SearchPage extends React.Component {
     }
 
     render() {
-        if (!this.state.toResults) {
-            return(
-                <div>
-                    <Nav />
-                    <Jumbotron />
-                    <Container header={'SEARCH'} icon='search'>
-                        <div className="input-group my-3">
-                            <input type="text" className="form-control title" placeholder="" aria-label="Book's Keyword" aria-describedby="button-addon2" onChange={this.handleChange} onKeyPress={this.handleKeyPress}></input>
-                            <div className="input-group-append">
-                                <BtnSubmit className="btn btn-primary search" type="button" id="button-addon2" onClick={this.handleSubmit} >SEARCH</BtnSubmit>
-                            </div>
-                        </div>
-                    </Container>
-                    <Footer />
-                    <br />
-                </div>
-            )
-            
-        }
-
         return(
             <div>
                 <Nav />
@@ -172,14 +153,14 @@ class SearchPage extends React.Component {
                 <Container header={'SEARCH'}  icon='search'>
                     {/* <h4 style={{fontWeight:'bold'}}>BOOK SEARCH</h4> */}
                     <div className="input-group my-3">
-                        <input type="text" className="form-control title" placeholder="" aria-label="Book's Keyword" aria-describedby="button-addon2" onChange={this.handleChange} onKeyPress={this.handleKeyPress}></input>
+                        <input type="text" className="form-control title" placeholder="" aria-describedby="button-addon2" onChange={this.handleChange} onKeyPress={this.handleKeyPress}></input>
                         <div className="input-group-append">
                             <BtnSubmit type="button" id="button-addon2" onClick={this.handleSubmit}>SEARCH</BtnSubmit>
                         </div>
                     </div>
                 </Container>
                 <br />
-                    <Container header='SEARCH RESULTS'>
+                    {this.state.toResults ? <Container header='SEARCH RESULTS'>
                     {this.state.results.map(book => 
                         <Book 
                         key={book.id} 
@@ -200,7 +181,7 @@ class SearchPage extends React.Component {
                         />
                     )}
                     <h5 className="text-center">{this.state.message}</h5>
-                    </Container>
+                    </Container> : <br />}
                     <br /><br /><br /><br />
                     <Footer />
             </div>
@@ -209,3 +190,4 @@ class SearchPage extends React.Component {
 };
 
 export default SearchPage;
+
