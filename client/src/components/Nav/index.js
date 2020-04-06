@@ -1,8 +1,10 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import { useAuth0 } from "../../react-auth0-spa";
 import './style.css';
 
-function Nav(){
+const Nav = () => {
+    const { isAuthenticated, loginWithRedirect, logout} = useAuth0();
     return(
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark">
@@ -21,7 +23,8 @@ function Nav(){
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <Link to="/auth" className="nav-link">Sign in / Sign up</Link>
+                            {!isAuthenticated && (<button className='btn btn-success' onClick={() => loginWithRedirect({})}>Log in</button>)}
+                            {isAuthenticated && <button className='btn btn-danger'onClick={() => logout()}>Log out</button>}
                         </li>
                     </ul>
                 </div>

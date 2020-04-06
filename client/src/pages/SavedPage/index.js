@@ -4,9 +4,9 @@ import Footer from "../../components/Footer"
 import Container from "../../components/Container";
 import API from "../../utils/API";
 import Book from "../../components/Book";
-import {BtnSave} from "../../components/Button"
-
-class SavedPage extends React.Component {
+import {BtnSave} from "../../components/Button";
+import { useAuth0 } from "../../react-auth0-spa";
+class Saved extends React.Component {
     state = {
         books:[],
         message:'Your bookshelf is empty...' 
@@ -60,15 +60,15 @@ class SavedPage extends React.Component {
         }
     }
 
-    render(){
+    render(){     
         return(
             <div>
                 <Nav />
                 {/* <Jumbotron /> */}
                 <br />
                 <Container header='MY BOOKSHELF' icon='bookshelf'>
-                <h5 className="text-center">{this.state.message}</h5>
-                {this.state.books.map(book => 
+                    <h5 className="text-center">{this.state.message}</h5>
+                    {this.state.books.map(book => 
                         <Book 
                         key={book._id} 
                         googleId={book.googleId} 
@@ -93,5 +93,24 @@ class SavedPage extends React.Component {
         )
     }
 }
+const SavedPage = () => {
+    const { isAuthenticated } = useAuth0();
 
+    return (
+        <>
+            {isAuthenticated && <Saved />}
+            {!isAuthenticated &&
+            <>
+                <Nav />
+                <br />
+                <Container header='MY BOOKSHELF' icon='bookshelf'>
+                    <h5 className="text-center text-danger font-weight-bold">YOU NEED TO LOG IN FIRST!</h5>
+                </Container>
+                <br /><br /><br /><br />
+                <Footer />
+            </>}
+        </>
+        
+    );
+};
 export default SavedPage;
