@@ -17,34 +17,37 @@ function Book({ title, authors, categories, publisher, publishedDate, image, des
     //     )
     // }
     return(
-        <div className='card shadow rounded'>
-        <div className='card-body'>
-            <div className='row'>
-                <div className='col-md-4'>
-                    <a className='title-text' href={link} target={target}>{title}</a>
-                    <p style={{fontWeight:'bold'}}> Written by: <span>{authors.toString() || 'N/A'}</span></p>
+        <>
+        <div className='card shadow rounded book'>
+            <div className='card-body'>
+                <div className='row'>
+                    <div className='col-md-4'>
+                        <a className='title-text' href={link} target={target}>{title}</a>
+                        <p style={{fontWeight:'bold'}}> Written by: <span>{authors.toString() || 'N/A'}</span></p>
+                    </div>
+                    <div className='col-md-8 mt-2'>
+                        <p className='p-text'>Category: <span>{categories.toString()}</span></p>
+                        <p className='p-text'>Publisher: <span>{publisher.toString()}</span></p>
+                        <p className='p-text'>PublishedDate: <span>{publishedDate}</span></p>
+                    </div>
                 </div>
-                <div className='col-md-8 mt-2'>
-                    <p className='p-text'>Category: <span>{categories.toString()}</span></p>
-                    <p className='p-text'>Publisher: <span>{publisher.toString()}</span></p>
-                    <p className='p-text'>PublishedDate: <span>{publishedDate}</span></p>
-                </div>
-            </div>
-            <div className='row'>
-                <div className='col-md-4'>
-                    <img className='rounded shadow' src={image} alt={title}/>
-                </div>
-                {/* <div className='col-md-'></div> */}
-                <div className='col-md-8'>
-                    <p>{description}</p>
-                    <div style={{textAlign: 'right'}}>
-                        <BtnView link={link} target={target}>VIEW</BtnView>
-                        <Buttonaaa />
+                <div className='row'>
+                    <div className='col-md-4'>
+                        <img className='rounded shadow' src={image} alt={title} />
+                    </div>
+                    {/* <div className='col-md-'></div> */}
+                    <div className='col-md-8'>
+                        <p className='p-content'>{description}</p>
+                        <div style={{textAlign: 'right'}}>
+                            <BtnView link={link} target={target}>VIEW</BtnView>
+                            <Buttonaaa />
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
+        <br />
+        </>
     )
 }
 
