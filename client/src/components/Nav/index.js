@@ -2,13 +2,18 @@ import React from "react";
 import {Link} from "react-router-dom";
 import { useAuth0 } from "../../react-auth0-spa";
 import './style.css';
+import logo from './logo-rb.png'
 
 const Nav = () => {
-    const { isAuthenticated, loginWithRedirect, logout} = useAuth0();
+    const {isAuthenticated, loginWithRedirect, logout} = useAuth0();
+
     return(
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark">
-                <Link className="navbar-brand" to='/'><i className="fas fa-book-open" /> React Bookshelf</Link>
+                <Link className="navbar-brand" to='/'>
+                    <img className='logo mx-2 my-0' src={logo} alt="" />
+                        React Bookshelf
+                </Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -21,10 +26,10 @@ const Nav = () => {
                             <Link to="/saved" className="nav-link">My Bookshelf</Link>
                         </li>
                     </ul>
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
+                    <ul className="navbar-nav">
+                        <li className="nav-item">
                             {!isAuthenticated && (<button className='btn btn-success' onClick={() => loginWithRedirect({})}>Log in</button>)}
-                            {isAuthenticated && <button className='btn btn-danger'onClick={() => logout()}>Log out</button>}
+                            {isAuthenticated && <button className='btn btn-danger' onClick={() => logout()}>Log out</button>}
                         </li>
                     </ul>
                 </div>
