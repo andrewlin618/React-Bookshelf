@@ -16,10 +16,12 @@ class SearchPage extends React.Component {
         books:[],
         results:[],
         isCollapsed:false,
-        message:''
+        message:'',
+        isAuthenticated:this.props.isAuthenticated
     };
 
     componentDidMount() {
+        console.log(this.state.isAuthenticated);
         this.setState({
             toResults:false,
         })
@@ -92,6 +94,9 @@ class SearchPage extends React.Component {
 
     handleBookSave = (id) => {
         //If the book is not saved, save the book:
+        if(!this.state.isAuthenticated){
+            return alert('Log in first!')
+        }
         if(!this.checkSave(id)){
             this.saveBook(id);
         }
@@ -136,6 +141,7 @@ class SearchPage extends React.Component {
     }
 
     checkSave = (id) => {
+        if(!this.state.isAuthenticated) return false;
         var tem = false;
         this.state.books.forEach(book => {
             if(book.googleId === id){
