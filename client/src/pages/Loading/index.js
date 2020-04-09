@@ -1,13 +1,10 @@
 import React from "react";
-import Nav from "../../components/Nav"
-import Jumbotron from "../../components/Jumbotron"
+import './style.css';
 
 function Loading(){
     return(
-        <div>
-            <Nav />
-            <Jumbotron />
-            <h4 className="text-center">Loading......</h4>
+        <div className='whole-page'>
+            <h1 className='text-light'>Loading······</h1>
         </div>
     )
 }

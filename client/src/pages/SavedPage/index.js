@@ -5,11 +5,13 @@ import Container from "../../components/Container";
 import API from "../../utils/API";
 import Book from "../../components/Book";
 import {BtnSave} from "../../components/Button";
-import { useAuth0 } from "../../react-auth0-spa";
-class Saved extends React.Component {
+
+class SavedPage extends React.Component {
     state = {
-        books:[],
-        message:'Your bookshelf is empty...' 
+        books: [],
+        message: 'Your bookshelf is empty...',
+        isAuthenticated: this.props.isAuthenticated,
+        email: this.props.user ? this.props.user.email : ''
     }
 
     componentDidMount() {
@@ -67,25 +69,30 @@ class Saved extends React.Component {
                 {/* <Jumbotron /> */}
                 <br />
                 <Container header='MY BOOKSHELF' icon='bookshelf'>
-                    <h5 className="text-center">{this.state.message}</h5>
-                    {this.state.books.map(book => 
-                        <Book 
-                        key={book._id} 
-                        googleId={book.googleId} 
-                        title={book.title} 
-                        authors={book.authors}
-                        categories={book.categories} 
-                        publisher={book.publisher}
-                        publishedDate={book.publishedDate} 
-                        image={book.image} 
-                        description={book.description}  
-                        link={book.link} 
-                        target="_blank"
-                        Buttonaaa={()=>(
-                            <BtnSave onClick={() => this.deleteBook(book._id)} isSaved = {true}></BtnSave>
-                        )}
-                        />
-                    )}
+                    {!this.state.isAuthenticated && <h5 className="text-center text-danger font-weight-bold">YOU NEED TO LOG IN FIRST!</h5>}
+                    {this.state.isAuthenticated && 
+                        <>
+                            <h5 className="text-center">{this.state.message}</h5>
+                            {this.state.books.map(book => 
+                                <Book 
+                                key={book._id} 
+                                googleId={book.googleId} 
+                                title={book.title} 
+                                authors={book.authors}
+                                categories={book.categories} 
+                                publisher={book.publisher}
+                                publishedDate={book.publishedDate} 
+                                image={book.image} 
+                                description={book.description}  
+                                link={book.link} 
+                                target="_blank"
+                                Buttonaaa={()=>(
+                                    <BtnSave onClick={() => this.deleteBook(book._id)} isSaved = {true}></BtnSave>
+                                )}
+                                />
+                            )}
+                        </>
+                    }
                 </Container>
                 <br /><br /><br /><br />
                 <Footer />
@@ -93,24 +100,5 @@ class Saved extends React.Component {
         )
     }
 }
-const SavedPage = () => {
-    const { isAuthenticated } = useAuth0();
 
-    return (
-        <>
-            {isAuthenticated && <Saved />}
-            {!isAuthenticated &&
-            <>
-                <Nav />
-                <br />
-                <Container header='MY BOOKSHELF' icon='bookshelf'>
-                    <h5 className="text-center text-danger font-weight-bold">YOU NEED TO LOG IN FIRST!</h5>
-                </Container>
-                <br /><br /><br /><br />
-                <Footer />
-            </>}
-        </>
-        
-    );
-};
 export default SavedPage;

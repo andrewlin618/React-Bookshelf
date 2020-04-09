@@ -11,13 +11,14 @@ import './style.css';
 const MAXRESULTS = 30;
 class SearchPage extends React.Component {
     state = {
-        value:this.props.location.state ? this.props.location.state.value : '',
-        toResults:false,
-        books:[],
-        results:[],
-        isCollapsed:false,
-        message:'',
-        isAuthenticated:this.props.isAuthenticated
+        value: this.props.location.state ? this.props.location.state.value : '',
+        toResults: false,
+        books: [],
+        results: [],
+        isCollapsed: false,
+        message: '',
+        isAuthenticated: this.props.isAuthenticated,
+        email: this.props.user ? this.props.user.email : ''
     };
 
     componentDidMount() {

@@ -27,8 +27,13 @@ const Nav = () => {
                         </li>
                     </ul>
                     <ul className="navbar-nav">
+                        {isAuthenticated && 
                         <li className="nav-item">
-                            {!isAuthenticated && (<button className='btn btn-success' onClick={() => loginWithRedirect({})}>Log in</button>)}
+                            <Link to="/profile" className="nav-link">Profile</Link>
+                        </li>
+                        }
+                        <li className="nav-item">
+                            {!isAuthenticated && (<button className='btn btn-success' onClick={() => loginWithRedirect({})}>Log in / Sign up</button>)}
                             {isAuthenticated && <button className='btn btn-danger' onClick={() => logout()}>Log out</button>}
                         </li>
                     </ul>
