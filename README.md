@@ -1,12 +1,10 @@
-<img src="client/src/images/screenshot.png" height=300px alt="Screenshot"></img>
+<img src="https://i.ibb.co/SyMyMHC/screenshot.png" height=300px alt="Screenshot"></img>
 
 # React-Bookshelf
-A web app that allow you to search book from google books API and store in your personal bookshelf.<br />
-After you entered the key words and clicked submit, it will return books from google books API, filtering only books with title, authors, categories, publisher, publishedDate, image and description.
+React bookshelf is a full-stack web application that allows you to search book from google books API and store in your personal bookshelf.<br />
+After you entered the keywords and submitted, it will return books from google books API, filtering only books with title, authors, categories, publisher, publishedDate, image, and description.
 
-[Check the front end commits](https://github.com/andrewlin618/React-Book-Search)
-
-
+- [Link](#link)
 - [End Goal](#end-goal)
 - [Getting Started](#getting-started)
 - [Tech I Used](#tech-i-used)
@@ -14,15 +12,18 @@ After you entered the key words and clicked submit, it will return books from go
 - [Stretch Goals](#stretch-goals)
 - [Contact](#contact)
 
+## Link
+https://reactbookshelf.herokuapp.com/
+
 ## End Goal
-To let the user search books and get useful information more easily.
+To let the user search for books and get useful information more easily.
 
 ## Getting Started
-Clone the repo to local, in the project directory, you can run:
+Clone the repo to local. In the project directory, you can run:
 
 ### `npm install`
 
-Install all necessary dependencies to ensure the app function properly.
+Install all necessary dependencies to ensure the app function correctly.
 Dependencies include:
 - "axios": "^0.19.2",
 - "react": "^16.12.0",
@@ -61,9 +62,11 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
   -  React: A JS front-end library for building user interfaces.
   -  Node.js: A JS run-time environment.
   
+* Bootstrap
 * React bootstrap
 * React Router
 * Axios (for API call)
+* Font awesome 
 * Responsive design
 * Heroku (for deployment)
 
