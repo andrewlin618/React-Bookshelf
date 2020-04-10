@@ -47,8 +47,10 @@ class MainPage extends React.Component {
         return(
             <div className='main'>
                 <Nav />
-                {/* <Carousel /> */}
-                <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br />
+                <h1 className='text-light text-center display-4'>Search the books you like.</h1>
+                <h2 className='text-light text-center'>Save to your personal online bookshelf.</h2>
+                <br />
                 <Container header={'SEARCH'} icon='search'>
                     <div className="input-group my-3">
                         <input type="text" className="form-control title" placeholder="" aria-label="Book's Keyword" aria-describedby="button-addon2" onChange={this.handleChange} onKeyPress={this.handleKeyPress}></input>

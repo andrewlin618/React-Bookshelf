@@ -1,14 +1,14 @@
-.search{
+.search {
     width: 6rem;
 }
 
-body{
+body {
     background-color: lightgrey;
     width: 100%;
 }
 
-.main{
-    background-image: url(https://images.pexels.com/photos/711009/pexels-photo-711009.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+.main {
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('https://images.pexels.com/photos/711009/pexels-photo-711009.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
     height: 100vh;
     background-size: cover;
 }
