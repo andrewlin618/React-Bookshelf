@@ -70,7 +70,7 @@ class SavedPage extends React.Component {
                 {/* <Jumbotron /> */}
                 <br />
                 <Container header='MY BOOKSHELF' icon='bookshelf'>
-                    {!this.state.isAuthenticated && <h5 className="text-center text-danger font-weight-bold">YOU NEED TO LOG IN FIRST!</h5>}
+                    {!this.state.isAuthenticated && <h5 className="text-center text-danger font-weight-bold">YOU NEED TO LOG IN TO OPEN YOUR BOOKSHELF.</h5>}
                     {this.state.isAuthenticated && 
                         <>
                             <h5 className="text-center">{this.state.message}</h5>

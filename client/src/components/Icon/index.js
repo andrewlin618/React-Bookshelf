@@ -10,6 +10,10 @@ function Icon(props){
         return(
             <i className="fas fa-book"></i>
         )
+    if(props.icon === 'profile')
+    return(
+        <i className="fas fa-user"></i>
+    )
     return(
         <i className="fas fa-angle-double-down"></i>
     )

@@ -18,21 +18,27 @@ const Nav = () => {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav mr-auto">
+                    {/* <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
                             <Link to="/search" className="nav-link">Search</Link>
                         </li>
-                        <li className="nav-item">
-                            <Link to="/saved" className="nav-link">My Bookshelf</Link>
-                        </li>
-                    </ul>
-                    <ul className="navbar-nav">
+                    </ul> */}
+                    <ul className="ml-auto navbar-nav">
                         {isAuthenticated && 
                         <li className="nav-item">
                             <Link to="/profile" className="nav-link">{`Welcome, ${user.nickname}`}</Link>
                         </li>
                         }
                         <li className="nav-item">
+                            <Link to="/search" className="nav-link">Search</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to="/saved" className="nav-link">My Bookshelf</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to="/profile" className="nav-link">Profile</Link>
+                        </li>
+                        <li className="nav-item ml-1">
                             {!isAuthenticated && (<button className='btn btn-success' onClick={() => loginWithRedirect({})}>Log in / Sign up</button>)}
                             {isAuthenticated && <button className='btn btn-danger' onClick={() => logout()}>Log out</button>}
                         </li>

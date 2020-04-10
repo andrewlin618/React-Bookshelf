@@ -1,6 +1,7 @@
 import React from "react";
 import Nav from "../../components/Nav"
 import Container from "../../components/Container";
+import Footer from "../../components/Footer";
 import { useAuth0 } from "../../react-auth0-spa";
 import "./style.css";
 
@@ -12,7 +13,7 @@ function Profile(){
             <Nav />
             <br />
             <Container header={'PROFILE'}  icon='profile'>
-                {!isAuthenticated && <h5 className="text-center text-danger font-weight-bold">YOU NEED TO LOG IN FIRST!</h5>}
+                {!isAuthenticated && <h5 className="text-center text-danger font-weight-bold">YOU NEED TO LOG IN TO SEE YOUR PROFILE.</h5>}
                 {isAuthenticated &&
                 <div className='card-body'>
                     <div className='row'>
@@ -29,6 +30,7 @@ function Profile(){
                 </div>
                 }
             </Container>
+            <Footer />
         </div>
     )
 }
