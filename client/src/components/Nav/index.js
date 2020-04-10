@@ -26,7 +26,7 @@ const Nav = () => {
                     <ul className="ml-auto navbar-nav">
                         {isAuthenticated && 
                         <li className="nav-item">
-                            <Link to="/profile" className="nav-link">{`Welcome, ${user.nickname}`}</Link>
+                            <Link to="#" className="nav-link">{`Welcome, ${user.nickname}`}</Link>
                         </li>
                         }
                         <li className="nav-item">

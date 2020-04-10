@@ -6,8 +6,13 @@ export default {
         return axios.get("/api/google", { params: { q: "title:" + q } });
     },
     // Get all saved books from the database;
-    getSavedBooks: function() {
+    getAllSavedBooks: function() {
         return axios.get("/api/books/");
+    },
+    // Get user's saved books from the database;
+    getSavedBooks: function(email) {
+        console.log('Email: ' + email);
+        return axios.get("/api/books?email=" + email);
     },
     // Get certain book from the database;
     getSavedBook: function(id) {

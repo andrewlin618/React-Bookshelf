@@ -1,10 +1,11 @@
-footer{
+.footer{
     text-align: center;
     color: white;
     position: fixed;
     width: 100%;
     bottom: 0px;
     height: 1.8rem;
+    background-color: #303030;
     /* background-image: url(../../images/books.png);
     background-repeat: no-repeat;
     background-size: cover; */

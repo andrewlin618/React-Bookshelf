@@ -18,7 +18,7 @@ class SearchPage extends React.Component {
         isCollapsed: false,
         message: '',
         isAuthenticated: this.props.isAuthenticated,
-        email: this.props.user ? this.props.user.email : ''
+        user: this.props.user ? this.props.user : {}
     };
 
     componentDidMount() {
@@ -26,19 +26,17 @@ class SearchPage extends React.Component {
         this.setState({
             toResults:false,
         })
-        this.openBookshelf();
-        if(this.props.location.state){
-            this.handleSubmit();
-        }
+        if(this.state.isAuthenticated) this.openBookshelf();
+        if(this.props.location.state) this.handleSubmit();
     }
 
     openBookshelf = () => {
-        console.log(this.state.email);
-        API.getSavedBooks()
-        .then(res => res.data.filter(book => book.userEmail === this.state.email))
+        console.log(this.state.user.email);
+        //TODO: Kinda low efficient to do API call again?
+        API.getSavedBooks(this.state.user.email)
         .then(res => {
             this.setState({
-                books:res,
+                books:res.data,
             })
             console.log('*** Successfully opened the bookshelf! ***');
             console.log(this.state.books);

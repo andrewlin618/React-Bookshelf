@@ -15,25 +15,26 @@ class SavedPage extends React.Component {
     }
 
     componentDidMount() {
-        this.openBookshelf();
+        if (this.state.isAuthenticated) this.openBookshelf();
     }
 
     openBookshelf = () => {
-        API.getSavedBooks()
-        .then(res => res.data.filter(book => book.userEmail === this.state.user.email))
+        console.log(this.state.user.email)
+        API.getSavedBooks(this.state.user.email)
+        // .then(res => res.data.filter(book => book.userEmail === this.state.user.email))
         .then(res => {
+            console.log('Database connected!');
             console.log(res);
-            console.log(this.state.books);
-            if(res.length > 1){
+            if(res.data.length > 1){
                 this.setState({
-                    books:res,
-                    message:`Hi ${this.state.user.given_name ? this.state.user.given_name : this.state.user.nickname}, you have ${res.length} books in your bookshelf.`
+                    books:res.data,
+                    message:`Hi ${this.state.user.given_name ? this.state.user.given_name : this.state.user.nickname}, you have ${res.data.length} books in your bookshelf.`
                 })
             }
-            else if (res.length === 1){
+            else if (res.data.length === 1){
                 this.setState({
-                    books:res,
-                    message:`Hi ${this.state.user.given_name ? this.state.user.given_name : this.state.user.nickname} book in your bookshelf.`
+                    books:res.data,
+                    message:`Hi ${this.state.user.given_name ? this.state.user.given_name : this.state.user.nickname}, you have 1 book in your bookshelf.`
                 })
             }
             else{
