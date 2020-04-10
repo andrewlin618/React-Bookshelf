@@ -2,6 +2,7 @@ import React from "react";
 import Nav from "../../components/Nav"
 import Container from "../../components/Container";
 import { useAuth0 } from "../../react-auth0-spa";
+import "./style.css";
 
 
 function Profile(){
@@ -10,14 +11,24 @@ function Profile(){
         <div>
             <Nav />
             <br />
-            {isAuthenticated &&
-                <Container header={'PROFILE'}  icon='profile'>
-                    <h1>{user.email}</h1>
-                    <h1>{user.nickname}</h1>
-                    <img src={user.picture} alt='avator'></img>
-                </Container>
-            }
-            {!isAuthenticated && <h1 className="text-center">Profile......</h1>}
+            <Container header={'PROFILE'}  icon='profile'>
+                {!isAuthenticated && <h5 className="text-center text-danger font-weight-bold">YOU NEED TO LOG IN FIRST!</h5>}
+                {isAuthenticated &&
+                <div className='card-body'>
+                    <div className='row'>
+                        <div className='col-md-4'>
+                            <img className='profile-img' src={user.picture} alt='avatar' />
+                        </div>
+                        <div className='col-md-8 mt-2'>
+                            <h5>Nickname:</h5>
+                            <p> {user.nickname}</p>
+                            <h5>Emails:</h5>
+                            <p> {user.email}</p>
+                        </div>
+                    </div>
+                </div>
+                }
+            </Container>
         </div>
     )
 }

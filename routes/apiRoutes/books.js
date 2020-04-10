@@ -3,7 +3,7 @@ const booksController = require("../../controllers/bookController");
 
 // Routes with "/api/books"
 router.route("/")
-    .get(booksController.findAll)
+    .get(booksController.findMyAll)
     .post(booksController.create);
 
 // Routes with "/api/books/:id"

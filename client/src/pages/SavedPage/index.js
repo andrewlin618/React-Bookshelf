@@ -9,9 +9,9 @@ import {BtnSave} from "../../components/Button";
 class SavedPage extends React.Component {
     state = {
         books: [],
-        message: 'Your bookshelf is empty...',
+        message: '',
         isAuthenticated: this.props.isAuthenticated,
-        email: this.props.user ? this.props.user.email : ''
+        user: this.props.user ? this.props.user : {}
     }
 
     componentDidMount() {
@@ -20,25 +20,26 @@ class SavedPage extends React.Component {
 
     openBookshelf = () => {
         API.getSavedBooks()
+        .then(res => res.data.filter(book => book.userEmail === this.state.user.email))
         .then(res => {
-            console.log(res.data);
+            console.log(res);
             console.log(this.state.books);
-            if(res.data.length > 1){
+            if(res.length > 1){
                 this.setState({
-                    books:res.data,
-                    message:'Total books: ' + res.data.length
+                    books:res,
+                    message:`Hi ${this.state.user.given_name ? this.state.user.given_name : this.state.user.nickname}, you have ${res.length} books in your bookshelf.`
                 })
             }
-            else if (res.data.length === 1){
+            else if (res.length === 1){
                 this.setState({
-                    books:res.data,
-                    message:'Total book: ' + res.data.length
+                    books:res,
+                    message:`Hi ${this.state.user.given_name ? this.state.user.given_name : this.state.user.nickname} book in your bookshelf.`
                 })
             }
             else{
                 this.setState({
                     books:[],
-                    message:'Your bookshelf is empty...'
+                    message:`Hi ${this.state.user.given_name ? this.state.user.given_name : this.state.user.nickname}, your bookshelf is empty.`
                 })
             }
 

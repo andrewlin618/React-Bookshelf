@@ -33,7 +33,7 @@ function Book({ title, authors, categories, publisher, publishedDate, image, des
                 </div>
                 <div className='row'>
                     <div className='col-md-4'>
-                        <img className='rounded shadow' src={image} alt={title} />
+                        <img className='book-img rounded shadow' src={image} alt={title} />
                     </div>
                     {/* <div className='col-md-'></div> */}
                     <div className='col-md-8'>

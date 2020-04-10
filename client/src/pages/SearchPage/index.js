@@ -33,10 +33,12 @@ class SearchPage extends React.Component {
     }
 
     openBookshelf = () => {
+        console.log(this.state.email);
         API.getSavedBooks()
+        .then(res => res.data.filter(book => book.userEmail === this.state.email))
         .then(res => {
             this.setState({
-                books:res.data,
+                books:res,
             })
             console.log('*** Successfully opened the bookshelf! ***');
             console.log(this.state.books);
@@ -119,6 +121,7 @@ class SearchPage extends React.Component {
         const book = this.state.results.find(book => book.id === id);
         const bookData = {
             googleId:book.id,
+            userEmail:this.state.email,
             title:book.volumeInfo.title,
             authors:book.volumeInfo.authors,
             categories:book.volumeInfo.categories,

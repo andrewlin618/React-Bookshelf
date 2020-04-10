@@ -5,7 +5,7 @@ import './style.css';
 import logo from './logo-rb.png'
 
 const Nav = () => {
-    const {isAuthenticated, loginWithRedirect, logout} = useAuth0();
+    const {isAuthenticated, loginWithRedirect, logout, user} = useAuth0();
 
     return(
         <div>
@@ -29,7 +29,7 @@ const Nav = () => {
                     <ul className="navbar-nav">
                         {isAuthenticated && 
                         <li className="nav-item">
-                            <Link to="/profile" className="nav-link">Profile</Link>
+                            <Link to="/profile" className="nav-link">{`Welcome, ${user.nickname}`}</Link>
                         </li>
                         }
                         <li className="nav-item">

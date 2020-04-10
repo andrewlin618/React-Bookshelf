@@ -1,7 +1,7 @@
 import React from "react";
 import Nav from "../../components/Nav"
 // import Jumbotron from "../../components/Jumbotron"
-import Carousel from "../../components/Carousel"
+// import Carousel from "../../components/Carousel"
 import Container from "../../components/Container";
 import Footer from "../../components/Footer";
 import {BtnSubmit} from "../../components/Button"
