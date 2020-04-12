@@ -121,9 +121,9 @@ class SearchPage extends React.Component {
             categories:book.volumeInfo.categories,
             publisher:book.volumeInfo.publisher,
             publishedDate:book.volumeInfo.publishedDate,
-            image:book.volumeInfo.imageLinks.thumbnail,
+            image:'https' + book.volumeInfo.imageLinks.thumbnail.slice(4),
             description:book.volumeInfo.description, 
-            link:book.volumeInfo.previewLink
+            link:'https' + book.volumeInfo.previewLink.slice(4)
         };           
         console.log('My email: ' + this.state.user.email);
         console.log(bookData);
