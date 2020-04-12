@@ -176,9 +176,9 @@ class SearchPage extends React.Component {
                         categories={book.volumeInfo.categories} 
                         publisher={book.volumeInfo.publisher}
                         publishedDate={book.volumeInfo.publishedDate} 
-                        image={book.volumeInfo.imageLinks.thumbnail} 
+                        image={'http:' + book.volumeInfo.imageLinks.thumbnail.slice(4)} 
                         description={book.volumeInfo.description}  
-                        link={book.volumeInfo.previewLink} 
+                        link={'http:' + book.volumeInfo.previewLink.slice(4)} 
                         isCollapsed={this.state.isCollapsed}
                         target="_blank"
                         Buttonaaa={()=>(
