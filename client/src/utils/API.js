@@ -11,7 +11,6 @@ export default {
     },
     // Get user's saved books from the database;
     getSavedBooks: function(email) {
-        console.log('Email: ' + email);
         return axios.get("/api/books?email=" + email);
     },
     // Get certain book from the database;

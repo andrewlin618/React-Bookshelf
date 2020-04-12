@@ -22,7 +22,6 @@ class SearchPage extends React.Component {
     };
 
     componentDidMount() {
-        console.log(this.state.isAuthenticated);
         this.setState({
             toResults:false,
         })
@@ -31,7 +30,6 @@ class SearchPage extends React.Component {
     }
 
     openBookshelf = () => {
-        console.log(this.state.user.email);
         //TODO: Kinda low efficient to do API call again?
         API.getSavedBooks(this.state.user.email)
         .then(res => {
@@ -119,7 +117,7 @@ class SearchPage extends React.Component {
         const book = this.state.results.find(book => book.id === id);
         const bookData = {
             googleId:book.id,
-            userEmail:this.state.email,
+            userEmail:this.state.user.email,
             title:book.volumeInfo.title,
             authors:book.volumeInfo.authors,
             categories:book.volumeInfo.categories,
@@ -129,12 +127,14 @@ class SearchPage extends React.Component {
             description:book.volumeInfo.description, 
             link:book.volumeInfo.previewLink
         };           
+        console.log('My email: ' + this.state.user.email);
+        console.log(bookData);
         API.saveBook(bookData)
         .then(() => {
             console.log("Successfully saved!");
             this.openBookshelf();
         })
-        .catch(() => alert('Book already exists!'))
+        .catch((err) => console.log(err))
     }
 
     deleteBook = () => {
