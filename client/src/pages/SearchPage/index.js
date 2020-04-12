@@ -36,7 +36,7 @@ class SearchPage extends React.Component {
             this.setState({
                 books:res.data,
             })
-            console.log('*** Successfully opened the bookshelf! ***');
+            console.log('*** Succeeded: Opened the bookshelf.');
             console.log(this.state.books);
         })
         .catch((err) => console.log(err))
@@ -44,7 +44,6 @@ class SearchPage extends React.Component {
 
     handleChange = event => {
         this.setState({value: event.target.value});
-        console.log(this.state.value);
     }
 
     handleSubmit = (e) => {
@@ -55,6 +54,7 @@ class SearchPage extends React.Component {
 
         axios.get("https://www.googleapis.com/books/v1/volumes?q=" + this.state.value + '&maxResults=' + MAXRESULTS)
         .then(res => {
+            console.log('*** Succeeded: Google API call.');
             if(!res.data.items){
                 this.setState({
                     results: [],
@@ -80,7 +80,6 @@ class SearchPage extends React.Component {
                     message:''
                 })          
             }
-            console.log('*** Search Results: ***');
             console.log(this.state.results);
         })
         .catch(() =>
@@ -108,7 +107,6 @@ class SearchPage extends React.Component {
     handleKeyPress = (event) => {
         if(event.key === 'Enter'){
             this.handleSubmit();
-            console.log('enter press here! ')
         }
     }
 
@@ -131,7 +129,7 @@ class SearchPage extends React.Component {
         console.log(bookData);
         API.saveBook(bookData)
         .then(() => {
-            console.log("Successfully saved!");
+            console.log("*** Succeeded: Saved book to bookshelf.");
             this.openBookshelf();
         })
         .catch((err) => console.log(err))

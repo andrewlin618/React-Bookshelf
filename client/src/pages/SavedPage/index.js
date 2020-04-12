@@ -83,7 +83,7 @@ class SavedPage extends React.Component {
                                 authors={book.authors}
                                 categories={book.categories} 
                                 publisher={book.publisher}
-                                publishedDate={book.publishedDate} 
+                                publishedDate={book.publishedDate.slice(0,10)} 
                                 image={book.image} 
                                 description={book.description}  
                                 link={book.link} 
