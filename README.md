@@ -69,7 +69,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 * Font awesome 
 * Responsive design
 * Heroku (for deployment)
-
+* Auth0
 
 ## API I Used
 - Google Books API (for books recommendation)
