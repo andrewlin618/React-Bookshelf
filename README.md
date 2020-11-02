@@ -30,7 +30,7 @@ After you entered the keywords and submitted, it will return books from google b
 <img src="images/search.gif" width=500px alt="search"></img>
 <br />
 
-3. Remove books from your bookshelf:
+3. Remove books from your bookshelf:<br />
 <img src="images/delete.gif" width=500px alt="delete"></img>
 <br />
 
