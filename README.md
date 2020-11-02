@@ -1,90 +1,93 @@
-<img src="https://i.ibb.co/0sRrtNR/screenshot.png" alt="screenshot" height=300px></img>
-
 # React-Bookshelf
-React bookshelf is a full-stack web application that allows you to search book from google books API and store in your personal bookshelf.<br />
+Online platform for reading-lovers to search books and store them into their personal online bookshelf.
+
+<img src="/images/screenshot.png" height=500px alt="Screenshot"></img>
+<br /><br />
+
+## Table of Contents
+* [About The Project](#about-the-project)
+  * [Usage](#usage)
+  * [Stretch Goals](#stretch-goals)
+  * [Build With](#build-with)
+* [Getting Started](#getting-started)
+  * [Installation](#installation)
+* [Contact](#contact)
+<br /><br />
+
+## About The Project
+
+React bookshelf is a full-stack web application that allows you to search book from google books API and store in your personal bookshelf.
 After you entered the keywords and submitted, it will return books from google books API, filtering only books with title, authors, categories, publisher, publishedDate, image, and description.
 
-- [Link](#link)
-- [End Goal](#end-goal)
-- [Getting Started](#getting-started)
-- [Tech I Used](#tech-i-used)
-- [API I Used](#api-i-used)
-- [Stretch Goals](#stretch-goals)
-- [Contact](#contact)
+[Try it now!](https://reactbookshelf.herokuapp.com/)
 
-## Link
-https://reactbookshelf.herokuapp.com/
+### Usage
+1. Login with email or google account:<br />
+<img src="images/login.gif" width=500px alt="login"></img>
+<br />
 
-## End Goal
-To let the user search for books and get useful information more easily.
+2. Search a book and add to bookshelf:<br />
+<img src="images/search.gif" width=500px alt="search"></img>
+<br />
+
+3. Remove books from your bookshelf:
+<img src="images/delete.gif" width=500px alt="delete"></img>
+<br />
+
+### Stretch Goals
+* Use Plaid API for bank account linking.
+* Use Uber driver and other API to submit new shift automatically.
+* Use different calculation for rush hour & non rush hour.
+
+### Build With
+* React.js
+* Node.js
+* Express.js
+* Mongo DB Atlas
+* Google Books API
+* Font awesome 
+* Bootstrap
+* Heroku 
 
 ## Getting Started
-Clone the repo to local. In the project directory, you can run:
 
-### `npm install`
+### Installation
 
-Install all necessary dependencies to ensure the app function correctly.
-Dependencies include:
-- "axios": "^0.19.2",
-- "react": "^16.12.0",
-- "react-dom": "^16.12.0",
-- "react-router-dom": "^5.1.2",
-- "react-scripts": "3.3.0",
--  "serve": "^11.3.0"
--  "concurrently": "^5.1.0",
--  "cors": "^2.8.5",
--  "express": "^4.17.1",
--  "mongoose": "^5.8.11",
--  "nodemon": "^2.0.2"
+1. Clone the repo to local:
+```
+git clone https://github.com/andrewlin618/React-Bookshelf.git
+cd React-Bookshelf
+```
 
-### `npm start`
+2. Install the dependencies for Server:
+* "axios": "^0.19.2",
+* "concurrently": "^5.1.0",
+* "dotenv": "^8.2.0",
+* "express": "^4.17.1",
+* "minimist": "^1.2.5",
+* "mongoose": "^5.8.11",
+* "nodemon": "^2.0.2"
+```
+npm install
+```
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+3. Install the dependencies for Client:
+* "axios": "^0.19.2",
+* "react-dom": "^16.12.0",
+* "react-router-dom": "^5.1.2"
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+```
+cd client && npm install
+```
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-## Tech I Used
-* MERN stack development:
-  -  MongoDB: A document-based open source database.
-  -  Express: A web application framework for Node.js (for routing).
-  -  React: A JS front-end library for building user interfaces.
-  -  Node.js: A JS run-time environment.
-  
-* Bootstrap
-* React bootstrap
-* React Router
-* Axios (for API call)
-* Font awesome 
-* Responsive design
-* Heroku (for deployment)
-* Auth0
-
-## API I Used
-- Google Books API (for books recommendation)
-
-## Stretch Goals
-- Add filter function for books
-- Add sort function for books
+4. Run the app with:
+```
+npm start
+```
+Open http://localhost:3001 to take a look around
 
 ## Contact
-
-> Reach out to me at one of the following places!
-
-- **Tel:**      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `206-886-9131`
-- **Email:**    &ensp; &nbsp; &nbsp; `andrewlin618@gmail.com`
-- **LinkedIn:** &nbsp;&nbsp; [Andrew Lin](https://www.linkedin.com/in/andrewlin618)
-
+- LinkedIn: [Andrew Lin](https://www.linkedin.com/in/andrewlin618)
+- Email:    &nbsp; &nbsp; `andrewlin618@gmail.com`
 
 
